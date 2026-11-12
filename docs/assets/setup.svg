@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="800" viewBox="0 0 1240 800" role="img" aria-labelledby="setTitle setDesc">
+  <title id="setTitle">SpeechToTextAuxPy — puesta en marcha en seis pasos</title>
+  <desc id="setDesc">Requisitos de Windows, paquete de voz español, Python, entorno virtual, configuración de line-in y ejecución con run.bat.</desc>
+
+  <defs>
+    <pattern id="gridSet" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 H 0 V 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="800" fill="#0b1220"/>
+  <rect x="0" y="0" width="1240" height="800" fill="url(#gridSet)" opacity="0.35"/>
+
+  <text x="48" y="56" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#e6edf3">Puesta en marcha</text>
+  <text x="48" y="84" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">Seis pasos, unos diez minutos. El paso que más falla es el 2: el paquete de voz español.</text>
+
+  <!-- Paso 1 -->
+  <rect x="52" y="146" width="620" height="86" rx="12" fill="#121c2e" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="96" cy="189" r="16" fill="#0b1220" stroke="#34d399" stroke-width="2"/>
+  <text x="96" y="195" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#34d399">1</text>
+  <text x="128" y="176" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Windows 10 u 11 · SAPI y .NET ya incluidos</text>
+  <text x="128" y="198" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">No hay que instalar .NET Framework ni redistribuibles.</text>
+  <text x="128" y="217" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">System.Speech.dll vive en la GAC del sistema desde Windows Vista.</text>
+
+  <!-- Paso 2 -->
+  <rect x="52" y="246" width="620" height="86" rx="12" fill="#121c2e" stroke="#fbbf24" stroke-width="1.5"/>
+  <circle cx="96" cy="289" r="16" fill="#0b1220" stroke="#fbbf24" stroke-width="2"/>
+  <text x="96" y="295" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#fbbf24">2</text>
+  <text x="128" y="276" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Paquete de voz español instalado</text>
+  <text x="128" y="298" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">Configuración › Hora e idioma › Voz › Agregar voces</text>
+  <text x="128" y="317" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Sin reconocedor es-ES el motor lanza una excepción al arrancar.</text>
+
+  <!-- Paso 3 -->
+  <rect x="52" y="346" width="620" height="86" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <circle cx="96" cy="389" r="16" fill="#0b1220" stroke="#a78bfa" stroke-width="2"/>
+  <text x="96" y="395" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#a78bfa">3</text>
+  <text x="128" y="376" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Python 3.10 o superior en el PATH</text>
+  <text x="128" y="398" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">py -3.12 --version</text>
+  <text x="128" y="417" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Marca «Add python.exe to PATH» durante la instalación.</text>
+
+  <!-- Paso 4 -->
+  <rect x="52" y="446" width="620" height="86" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <circle cx="96" cy="489" r="16" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+  <text x="96" y="495" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#22d3ee">4</text>
+  <text x="128" y="476" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Entorno virtual con las dos dependencias</text>
+  <text x="128" y="498" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">pip install -r requirements.txt</text>
+  <text x="128" y="517" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">pythonnet y colorama. No hay ruedas nativas de audio que compilar.</text>
+
+  <!-- Paso 5 -->
+  <rect x="52" y="546" width="620" height="86" rx="12" fill="#121c2e" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="96" cy="589" r="16" fill="#0b1220" stroke="#34d399" stroke-width="2"/>
+  <text x="96" y="595" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#34d399">5</text>
+  <text x="128" y="576" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Line-In (o micrófono) como entrada predeterminada</text>
+  <text x="128" y="598" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">Panel de control de sonido › Grabar › Predeterminar</text>
+  <text x="128" y="617" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Sube los niveles y desactiva el refuerzo de micrófono si distorsiona.</text>
+
+  <!-- Paso 6 -->
+  <rect x="52" y="646" width="620" height="86" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <circle cx="96" cy="689" r="16" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+  <text x="96" y="695" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="13.5" font-weight="700" fill="#22d3ee">6</text>
+  <text x="128" y="676" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Ejecutar, hablar y salir con Ctrl+C</text>
+  <text x="128" y="698" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">run.bat    ·    python src\main.py</text>
+  <text x="128" y="717" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">La primera línea reconocida suele tardar unos segundos en aparecer.</text>
+
+  <!-- Panel terminal -->
+  <rect x="700" y="146" width="488" height="250" rx="14" fill="#0d1526" stroke="#2b3b55" stroke-width="1.5"/>
+  <text x="724" y="178" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Terminal · PowerShell</text>
+  <text x="724" y="205" font-family="Consolas, Menlo, monospace" font-size="12" fill="#34d399">PS&gt; py -3.12 -m venv venv</text>
+  <text x="724" y="229" font-family="Consolas, Menlo, monospace" font-size="12" fill="#34d399">PS&gt; venv\Scripts\Activate.ps1</text>
+  <text x="724" y="253" font-family="Consolas, Menlo, monospace" font-size="12" fill="#34d399">PS&gt; pip install -r requirements.txt</text>
+  <text x="724" y="277" font-family="Consolas, Menlo, monospace" font-size="12" fill="#34d399">PS&gt; python src\main.py</text>
+  <text x="724" y="311" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#63758b">CMD: venv\Scripts\activate.bat</text>
+  <text x="724" y="331" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#63758b">run.bat ya hace pip install y chcp 65001.</text>
+  <text x="724" y="365" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Si PowerShell bloquea el script de activación:</text>
+  <text x="724" y="383" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7d8590">Set-ExecutionPolicy -Scope Process RemoteSigned</text>
+
+  <!-- Panel salida -->
+  <rect x="700" y="416" width="488" height="230" rx="14" fill="#0d1526" stroke="#1f4d5c" stroke-width="1.5"/>
+  <text x="724" y="448" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Salida esperada</text>
+  <text x="724" y="476" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#67e8f9">[10:15:32] === SpeechToTextAuxPy ===</text>
+  <text x="724" y="498" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#67e8f9">[10:15:32] Motor SAPI inicializado (es-ES)</text>
+  <text x="724" y="520" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#67e8f9">[10:15:32] Iniciando reconocimiento...</text>
+  <text x="724" y="542" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#e6edf3">[10:15:35] bienvenidos al curso de IA</text>
+  <text x="724" y="564" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#e6edf3">[10:15:40] hoy hablamos de PLN</text>
+  <text x="724" y="586" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#f87171">^C</text>
+  <text x="724" y="608" font-family="Consolas, Menlo, monospace" font-size="11.5" fill="#67e8f9">[10:15:42] Programa terminado.</text>
+  <text x="724" y="632" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Texto inventado: sirve solo como referencia de formato.</text>
+
+  <text x="52" y="768" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Los pasos 1 a 4 se hacen una sola vez por equipo; los pasos 5 y 6, cada vez que quieras transcribir.</text>
+</svg>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="990" viewBox="0 0 1240 990" role="img" aria-labelledby="flowTitle flowDesc">
+  <title id="flowTitle">SpeechToTextAuxPy — flujo SAPI de una frase</title>
+  <desc id="flowDesc">Ocho etapas desde el dispositivo de audio hasta la impresión en consola y el apagado ordenado con Ctrl+C.</desc>
+
+  <defs>
+    <pattern id="gridFlow" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 H 0 V 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="990" fill="#0b1220"/>
+  <rect x="0" y="0" width="1240" height="990" fill="url(#gridFlow)" opacity="0.35"/>
+
+  <text x="48" y="56" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#e6edf3">Flujo SAPI de una frase</text>
+  <text x="48" y="84" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">Del dispositivo de entrada predeterminado al texto en pantalla, y de ahí al apagado limpio.</text>
+
+  <!-- riel -->
+  <line x1="126" y1="132" x2="126" y2="930" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Paso 1 -->
+  <rect x="164" y="132" width="800" height="84" rx="12" fill="#121c2e" stroke="#34d399" stroke-width="1.5"/>
+  <circle cx="126" cy="174" r="17" fill="#0b1220" stroke="#34d399" stroke-width="2"/>
+  <text x="126" y="180" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#34d399">1</text>
+  <text x="184" y="162" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Windows expone el dispositivo de entrada predeterminado</text>
+  <text x="184" y="186" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">Micrófono o Line-In · el que esté marcado en Configuración › Sonido</text>
+  <text x="184" y="204" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">El programa no elige dispositivo por nombre: usa el predeterminado del sistema.</text>
+  <text x="1000" y="166" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Una sola fuente para todo</text>
+  <text x="1000" y="182" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">el equipo.</text>
+
+  <!-- Paso 2 -->
+  <rect x="164" y="234" width="800" height="84" rx="12" fill="#121c2e" stroke="#fbbf24" stroke-width="1.5"/>
+  <circle cx="126" cy="276" r="17" fill="#0b1220" stroke="#fbbf24" stroke-width="2"/>
+  <text x="126" y="282" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#fbbf24">2</text>
+  <text x="184" y="264" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">SAPI 5.4 abre el flujo del reconocedor es-ES</text>
+  <text x="184" y="288" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">El reconocedor instalado toma el audio: sin PyAudio ni binarios extra</text>
+  <text x="184" y="306" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">SetInputToDefaultAudioDevice() fija la fuente al crear el motor.</text>
+  <text x="1000" y="268" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Cero dependencias de</text>
+  <text x="1000" y="284" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">audio nativas.</text>
+
+  <!-- Paso 3 -->
+  <rect x="164" y="336" width="800" height="84" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <circle cx="126" cy="378" r="17" fill="#0b1220" stroke="#a78bfa" stroke-width="2"/>
+  <text x="126" y="384" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#a78bfa">3</text>
+  <text x="184" y="366" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">RecognizeAsync(RecognizeMode.Multiple)</text>
+  <text x="184" y="390" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">El motor queda en escucha hasta que se cancele de forma explícita</text>
+  <text x="184" y="408" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">La llamada vuelve de inmediato: el audio se procesa en hilos de .NET.</text>
+  <text x="1000" y="370" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">No bloquea el hilo</text>
+  <text x="1000" y="386" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">principal de Python.</text>
+
+  <!-- Paso 4 -->
+  <rect x="164" y="438" width="800" height="84" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <circle cx="126" cy="480" r="17" fill="#0b1220" stroke="#a78bfa" stroke-width="2"/>
+  <text x="126" y="486" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#a78bfa">4</text>
+  <text x="184" y="468" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">El reconocedor detecta voz y genera hipótesis</text>
+  <text x="184" y="492" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">SpeechDetected · SpeechHypothesized (no se usan en este programa)</text>
+  <text x="184" y="510" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">SAPI no devuelve texto palabra a palabra: espera a cerrar la frase.</text>
+  <text x="1000" y="472" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Motivo por el que no hay</text>
+  <text x="1000" y="488" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">texto parcial en pantalla.</text>
+
+  <!-- Paso 5 -->
+  <rect x="164" y="540" width="800" height="84" rx="12" fill="#121c2e" stroke="#fbbf24" stroke-width="1.5"/>
+  <circle cx="126" cy="582" r="17" fill="#0b1220" stroke="#fbbf24" stroke-width="2"/>
+  <text x="126" y="588" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#fbbf24">5</text>
+  <text x="184" y="570" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Silencio final: cierra la frase y decodifica</text>
+  <text x="184" y="594" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">DictationGrammar elige la transcripción más probable del audio</text>
+  <text x="184" y="612" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Aquí se paga la latencia de cola: típicamente 0,2 a 0,8 segundos.</text>
+  <text x="1000" y="574" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Ajustable con</text>
+  <text x="1000" y="590" font-family="Consolas, Menlo, monospace" font-size="11" fill="#7d8590">EndSilenceTimeout.</text>
+
+  <!-- Paso 6 -->
+  <rect x="164" y="642" width="800" height="84" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <circle cx="126" cy="684" r="17" fill="#0b1220" stroke="#a78bfa" stroke-width="2"/>
+  <text x="126" y="690" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#a78bfa">6</text>
+  <text x="184" y="672" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Evento SpeechRecognized en un hilo de .NET</text>
+  <text x="184" y="696" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">El delegado entra en _on_speech_recognized(sender, args)</text>
+  <text x="184" y="714" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Callback fuera del hilo principal: nada de bloquear ni dormir aquí.</text>
+  <text x="1000" y="676" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Un fallo aquí se captura</text>
+  <text x="1000" y="692" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">y no corta el bucle.</text>
+
+  <!-- Paso 7 -->
+  <rect x="164" y="744" width="800" height="84" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <circle cx="126" cy="786" r="17" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+  <text x="126" y="792" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#22d3ee">7</text>
+  <text x="184" y="774" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Texto a consola con timestamp</text>
+  <text x="184" y="798" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">args.Result.Text.strip() → print_recognized() → flush()</text>
+  <text x="184" y="816" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">El flush garantiza que la línea aparezca sin esperar al cierre del búfer.</text>
+  <text x="1000" y="778" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Salida apta para</text>
+  <text x="1000" y="794" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">redirección a archivo.</text>
+
+  <!-- Paso 8 -->
+  <rect x="164" y="846" width="800" height="84" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <circle cx="126" cy="888" r="17" fill="#0b1220" stroke="#22d3ee" stroke-width="2"/>
+  <text x="126" y="894" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="14" font-weight="700" fill="#22d3ee">8</text>
+  <text x="184" y="876" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">Ctrl+C: apagado ordenado</text>
+  <text x="184" y="900" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">RecognizeAsyncCancel() + Dispose() → sys.exit(0)</text>
+  <text x="184" y="918" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#63758b">Sin Ctrl+C el proceso sigue escuchando: no hay fin por sí solo.</text>
+  <text x="1000" y="880" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">Libera COM y deja el</text>
+  <text x="1000" y="896" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" fill="#7d8590">dispositivo disponible.</text>
+
+  <!-- flechas verticales entre pasos -->
+  <line x1="564" y1="218" x2="564" y2="230" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="320" x2="564" y2="332" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="422" x2="564" y2="434" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="524" x2="564" y2="536" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="626" x2="564" y2="638" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="728" x2="564" y2="740" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+  <line x1="564" y1="830" x2="564" y2="842" stroke="#475569" stroke-width="1.8" marker-end="url(#flowArrow)"/>
+
+  <text x="48" y="968" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Pasos 1 y 2: inicialización (una sola vez). Pasos 3 a 7: ciclo repetido por cada frase. Paso 8: solo al salir.</text>
+</svg>

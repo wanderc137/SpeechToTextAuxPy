@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="820" viewBox="0 0 1240 820" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">SpeechToTextAuxPy — arquitectura de componentes</title>
+  <desc id="archDesc">Diagrama de bloques: dispositivo de audio, SAPI 5.4, System.Speech, pythonnet, SapiEngine y consola, todos dentro del proceso python.exe.</desc>
+
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 H 0 V 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1240" height="820" fill="#0b1220"/>
+  <rect x="0" y="0" width="1240" height="820" fill="url(#grid)" opacity="0.35"/>
+
+  <text x="48" y="60" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#e6edf3">SpeechToTextAuxPy · arquitectura</text>
+  <text x="48" y="90" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">Audio del sistema → SAPI 5.4 → System.Speech (.NET) → pythonnet → consola. Un único proceso python.exe.</text>
+
+  <rect x="48" y="122" width="1144" height="538" rx="18" fill="#0d1526" stroke="#2b3b55" stroke-width="1.5" stroke-dasharray="10 7"/>
+  <text x="70" y="152" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" letter-spacing="1.6" fill="#64748b">PROCESO python.exe · CLR .NET FRAMEWORK 4.7.2+ CARGADO EN EL MISMO PROCESO</text>
+
+  <!-- Fila 1 -->
+  <rect x="78" y="186" width="300" height="98" rx="12" fill="#121c2e" stroke="#34d399" stroke-width="1.5"/>
+  <text x="98" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">1 · Dispositivo de audio</text>
+  <text x="98" y="243" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">Micrófono / Line-In</text>
+  <text x="98" y="264" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">predeterminado del sistema</text>
+
+  <rect x="470" y="186" width="300" height="98" rx="12" fill="#121c2e" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="490" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">2 · SAPI 5.4</text>
+  <text x="490" y="243" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">reconocedor es-ES</text>
+  <text x="490" y="264" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">COM in-proc · sin red</text>
+
+  <rect x="862" y="186" width="300" height="98" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="882" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">3 · System.Speech</text>
+  <text x="882" y="243" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">SpeechRecognitionEngine</text>
+  <text x="882" y="264" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">DictationGrammar</text>
+
+  <!-- Fila 2 -->
+  <rect x="862" y="366" width="300" height="98" rx="12" fill="#121c2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="882" y="395" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">4 · pythonnet (clr)</text>
+  <text x="882" y="423" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">AddReference + interop</text>
+  <text x="882" y="444" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">eventos .NET → Python</text>
+
+  <rect x="470" y="366" width="300" height="98" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="490" y="395" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">5 · SapiEngine</text>
+  <text x="490" y="423" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">start() / stop()</text>
+  <text x="490" y="444" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">callback de frases</text>
+
+  <rect x="78" y="366" width="300" height="98" rx="12" fill="#121c2e" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="98" y="395" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#e6edf3">6 · main.py + utils</text>
+  <text x="98" y="423" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">SIGINT / SIGTERM</text>
+  <text x="98" y="444" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b">timestamp [HH:MM:SS]</text>
+
+  <!-- Conectores -->
+  <line x1="378" y1="235" x2="462" y2="235" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrowGray)"/>
+  <text x="386" y="226" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748b">PCM</text>
+
+  <line x1="770" y1="235" x2="854" y2="235" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrowGray)"/>
+  <text x="778" y="226" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748b">frases</text>
+
+  <line x1="1012" y1="284" x2="1012" y2="358" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrowGray)"/>
+  <text x="1022" y="325" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748b">texto</text>
+
+  <line x1="862" y1="415" x2="778" y2="415" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrowGray)"/>
+  <text x="790" y="406" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#64748b">evento</text>
+
+  <line x1="470" y1="415" x2="386" y2="415" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+  <text x="392" y="406" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" fill="#22d3ee">print</text>
+
+  <line x1="228" y1="464" x2="228" y2="686" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+
+  <!-- Nota de apagado -->
+  <rect x="470" y="500" width="692" height="112" rx="12" fill="#111c2e" stroke="#334155" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="492" y="528" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#c9d5e3">Ruta de apagado (Ctrl+C)</text>
+  <text x="492" y="557" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8">SIGINT → signal_handler() → engine.stop()</text>
+  <text x="492" y="579" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#9fb3c8"> RecognizeAsyncCancel() + Dispose() → COM libre</text>
+  <text x="492" y="601" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#63758b"> sys.exit(0) · sin hilos ni dispositivos colgados</text>
+
+  <rect x="78" y="686" width="1084" height="76" rx="12" fill="#101a2b" stroke="#1f4d5c" stroke-width="1.5"/>
+  <text x="104" y="712" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#e6edf3">Consola Windows · stdout + stderr</text>
+  <text x="104" y="740" font-family="Consolas, Menlo, monospace" font-size="12.5" fill="#67e8f9">[10:15:35] bienvenidos al curso de inteligencia artificial</text>
+
+  <text x="48" y="798" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Los límites punteados indican el proceso: el reconocedor SAPI se carga dentro de python.exe vía COM, no como servicio aparte.</text>
+</svg>
