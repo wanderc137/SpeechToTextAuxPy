@@ -788,3 +788,55 @@ Puedes usar, copiar, modificar y redistribuir el código, conservando el aviso d
 Hecho con Python, paciencia y una cantidad sorprendente de pruebas de micrófono.
 
 </div>
+
+## Ficha de evaluación
+
+**Madurez global: 4.0/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 4/5 | Utilidad terminada de ~250 líneas, probada en Windows 10 con reconocedor es-ES, micrófono USB y line-in en sesiones de 10 a 40 minutos. |
+| Reproducibilidad | 3/5 | Dos dependencias (pythonnet y colorama) y run.bat, pero exige Windows con paquete de voz es-ES; no hay tests y Windows 11 quedó sin verificar. |
+| Documentación | 4/5 | README de 39 KB, datasheet de 24 KB, guía del desarrollador de 42 KB y bitácora con 11 problemas (P-01 a P-11) y 8 deudas priorizadas. |
+| Honestidad de límites | 5/5 | Diez limitaciones numeradas, latencia de cola explicada y verificación declarada: solo Windows 10, sin sesiones de más de 8 horas. |
+| Valor demostrativo | 4/5 | Integración de System.Speech por pythonnet con Dispose() explícito, RecognizeAsync(Multiple) y separación stdout/stderr que habilita redirección a archivo. |
+| Facilidad de despliegue | 4/5 | run.bat crea el entorno e instala en 10–40 s; el uso diario es venv más python src\main.py, aunque run.bat repite pip install en cada arranque (3–15 s). |
+
+Sirve para transcribir audio local en Windows sin subir nada a un servicio y como base para integrar SAPI en un script propio. La limitación que más pesa es la precisión del reconocedor clásico y la ausencia de selección de dispositivo.
+
+## Lo que no funcionó
+
+### v1.0 · bucle principal — signal.pause() no existe en Windows
+
+El bucle lanzaba AttributeError porque pause() es POSIX y el módulo signal de Windows no lo define. Se envolvió en try/except con time.sleep(0.5), lo que añade hasta 500 ms de retardo al Ctrl+C; threading.Event().wait() quedó anotado como mejora de una línea.
+
+### v1.0 · cierre — El motor quedaba tomado al salir
+
+Sin Dispose(), el SpeechRecognitionEngine retenía el dispositivo de audio hasta que el CLR recolectaba el objeto. stop() hace RecognizeAsyncCancel(), luego Dispose() y deja los atributos en None, con try/except en cada paso e idempotencia.
+
+### v1.0 · callbacks — AttributeError al acceder a args.Result
+
+En frases con ruido el evento llegaba sin resultado válido y el callback accedía a .Text sobre None. Se agregó la guarda args and args.Result and args.Result.Text, con strip() y comprobación de cadena no vacía dentro de un try/except que no interrumpe la sesión.
+
+### v1.0 · consola — Acentos corruptos en la salida
+
+La consola usaba CP850/CP1252 mientras Python escribía UTF-8, y "reconocimiento" aparecía como "reconocÃmiento". Se aplicó chcp 65001 en run.bat y reconfigure(encoding="utf-8") en los tres flujos, porque cada capa actúa en un punto distinto.
+
+## Preguntas típicas
+
+**¿Qué es SpeechToTextAuxPy?**
+
+Una utilidad de consola para Windows que transcribe continuamente el audio de la entrada predeterminada con SAPI 5.4 y muestra cada frase con su hora, sin usar internet.
+
+**¿Genera subtítulos en tiempo real o guarda el audio?**
+
+No. No emite texto parcial ni graba: espera el silencio final de cada frase y solo escribe en la consola; para guardar se redirige la salida.
+
+**¿Cómo se ejecuta?**
+
+Con run.bat en Windows 10/11, o creando un venv e instalando pythonnet y colorama para lanzar python src\main.py; requiere el paquete de voz español instalado.
+
+**¿Qué se puede reutilizar?**
+
+La clase SapiEngine con arranque, parada idempotente y Dispose(), y las utilidades de consola que separan stdout y stderr y degradan sin colorama.
+
