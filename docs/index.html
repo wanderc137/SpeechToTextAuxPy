@@ -291,7 +291,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 @media(max-width:760px){.concept-grid,.fail-grid{grid-template-columns:1fr}.concept-side{border-left:0;padding-left:0}}
 
 </style>
-<link href="assets/community.css?v=5" rel="stylesheet"/></head>
+<link href="assets/community.css?v=5" rel="stylesheet"/><link href="rec/player.css?v=1" rel="stylesheet"/>
+</head>
 <body style="--accent:#22D3EE;--accent2:#9B8CFF">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
@@ -306,6 +307,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <a href="#problema">Visión</a>
 <a href="#como">Cómo funciona</a>
 <a href="#arquitectura">Arquitectura</a>
+<a href="#video">Video</a>
 <a href="#docs">Documentación</a>
 <a href="#comunidad">Comunidad</a>
 <a class="btn btn-ghost" href="https://github.com/wanderc137/SpeechToTextAuxPy" rel="noopener" style="padding:9px 15px" target="_blank">GitHub</a>
@@ -356,6 +358,45 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 <div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>Elegir entrada</h3><p>El script toma el dispositivo de audio por defecto o el line-in configurado.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>Cargar el reconocedor</h3><p>System.Speech carga el motor SAPI en español disponible en Windows.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Escuchar</h3><p>El reconocimiento es continuo: no hay que pulsar un botón por frase.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>Escribir</h3><p>Cada resultado se imprime con timestamp y color en la consola.</p></div></div></div>
 </div>
 </section>
+
+<section class="section tight rec-section" id="video" style="--accent:#2E7DFF;--accent2:#14F195">
+<div class="wrap">
+<div class="rec-kicker">REC · VIDEO · 2:38</div>
+<h2 class="rec-h2">SpeechToTextAuxPy · SAPI dentro de Python</h2>
+<p class="rec-lead">Recorrido por el puente pythonnet hacia System.Speech: inicialización del motor, cultura es-ES, gramática de dictado, callback de reconocimiento, escucha continua y cierre limpio con Ctrl+C.</p>
+<div class="rec-banner">
+<span class="rec-banner-icon">📋</span>
+<strong>Puedes copiar y pegar los comandos del video desde el video !!!</strong>
+<span>Pausá, seleccioná el texto de la terminal y copiá.</span>
+</div>
+<div class="rec-shell">
+<div class="rec-bar"><i></i><i></i><i></i><span class="rec-title">SpeechToTextAuxPy · SAPI dentro de Python · asciinema</span><span class="rec-rec"><b></b>REC</span></div>
+<div class="rec-screen-wrap">
+<div class="rec-screen" id="rec-screen"></div>
+<div class="rec-poster" id="rec-poster">
+<div class="rec-kicker">ASCIINEMA · 2:38</div>
+<h3>SpeechToTextAuxPy · SAPI dentro de Python</h3>
+<p>Recorrido por el puente pythonnet hacia System.Speech: inicialización del motor, cultura es-ES, gramática de dictado, callback de reconocimiento, escucha continua y cierre limpio con Ctrl+C.</p>
+<div class="rec-poster-meta">SpeechToTextAuxPy · código real</div>
+<button class="rec-btn rec-primary" id="rec-start" type="button">▶ Reproducir</button>
+</div>
+</div>
+<div class="rec-controls">
+<button class="rec-btn rec-primary" id="rec-play" type="button">▶ Reproducir</button>
+<button class="rec-btn" id="rec-restart" type="button">↺ Reiniciar</button>
+<input class="rec-progress" id="rec-range" type="range" min="0" max="1000" value="0" aria-label="Progreso"/>
+<span class="rec-time" id="rec-time">0:00 / 2:38</span>
+<select class="rec-speed" id="rec-speed" aria-label="Velocidad"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+<button class="rec-btn" id="rec-full" type="button" title="Pantalla completa">⛶</button>
+<button class="rec-btn" id="rec-copy" type="button">⧉ Copiar comandos</button>
+<a class="rec-download" href="rec/SpeechToTextAuxPy.cast" download>descargar .cast</a>
+</div>
+</div>
+<p class="rec-note">Los fragmentos corresponden al código real del repositorio. El proyecto es exclusivo de Windows porque depende de System.Speech; no graba audio ni envía datos a ningún servicio.</p>
+<div class="rec-chapters"><span class="rec-chip"><b>0:06</b> EL PROBLEMA</span><span class="rec-chip"><b>0:20</b> ORQUESTACIÓN</span><span class="rec-chip"><b>0:33</b> EL PUENTE</span><span class="rec-chip"><b>0:47</b> EL MOTOR</span><span class="rec-chip"><b>1:01</b> EL CALLBACK</span><span class="rec-chip"><b>1:14</b> ESCUCHA CONTINUA</span><span class="rec-chip"><b>1:26</b> SEÑAL</span><span class="rec-chip"><b>1:39</b> CIERRE LIMPIO</span><span class="rec-chip"><b>1:53</b> SALIDA EN CONSOLA</span><span class="rec-chip"><b>2:05</b> ERRORES ÚTILES</span><span class="rec-chip"><b>2:18</b> CÓMO EJECUTARLO</span></div>
+</div>
+</section>
+
 <section class="section tight" id="arquitectura">
 <div class="wrap">
 <div class="section-head reveal">
@@ -467,5 +508,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
 </script>
 <script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "SpeechToTextAuxPy", "coinNamespace": "wanderc137-speechtotextauxpy-coins-v1", "faqs": [{"q": "¿Funciona en Linux o macOS?", "a": "No. Usa SAPI/System.Speech de Windows vía pythonnet; es Windows-only."}, {"q": "¿Necesita Internet?", "a": "No. La transcripción es local con el motor de voz de Windows."}, {"q": "¿Qué idioma soporta?", "a": "Español continuo, con timestamps en consola."}, {"q": "¿Cómo se ejecuta?", "a": "Con Python en Windows y las dependencias de <code>requirements.txt</code>; el datasheet tiene el paso a paso."}, {"q": "¿Cuáles son los límites?", "a": "Sin UI, sin diarización y sin modelos en la nube; depende de la calidad del micrófono."}]};</script>
 <script defer="" src="assets/community.js?v=6"></script>
+<script defer src="rec/SpeechToTextAuxPy.cast.js?v=1"></script>
+<script defer src="rec/player.js?v=1"></script>
 </body>
 </html>
